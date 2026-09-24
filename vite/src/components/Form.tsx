@@ -1,45 +1,81 @@
+
 import useStore from "../store/store";
 
 const Form = () => {
-const Inputs=useStore((state)=>state.Inputs);
-const handleChange=useStore((state)=>state.handleChange)
-const handleSubmit=useStore((state)=>state.handleSubmit)
-  return (
-     <>
-        <form onSubmit={(e) => {
-    e.preventDefault();
-    handleSubmit();
-}} >
-            <label>Title</label>
-            <input 
-            type="text"
-            name='title'
-            value={Inputs.title}
-            onChange={(e)=>handleChange(e.target.name,e.target.value)}
-            placeholder='Enter Title'
-            />
+  const Inputs = useStore((state) => state.Inputs);
+  const handleChange = useStore((state) => state.handleChange);
+  const handleSubmit = useStore((state) => state.handleSubmit);
 
-            <textarea
-            
+  return (
+    <>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+        className="w-full max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md border border-gray-200 space-y-5"
+      >
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-gray-700">
+            Title
+          </label>
+
+          <input
+            type="text"
+            name="title"
+            value={Inputs.title}
+            onChange={(e) => handleChange(e.target.name, e.target.value)}
+            placeholder="Enter Title"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-gray-700">
+            Content
+          </label>
+
+          <textarea
             name="content"
             value={Inputs.content}
             onChange={(e) => handleChange(e.target.name, e.target.value)}
             placeholder="Write your note..."
-            />
+            rows={6}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none resize-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition"
+          />
+        </div>
 
-            <label>Category</label>
-            <select name="category" value={Inputs.category} onChange={(e) => handleChange(e.target.name, e.target.value)} >
-              <option value="">Select Category</option>
-              <option value="Work">work</option>
-               <option value="Personal">personal</option>
-                <option value="Ideas">ideas</option>
-                 <option value="Tasks">task</option>
-            </select>
+        <div className="space-y-2">
+          <label className="block text-sm font-medium text-gray-700">
+            Category
+          </label>
 
-             <button type="submit">Save</button>
-        </form>
-     </>
-  )
-}
+          <select
+            name="category"
+            value={Inputs.category}
+            onChange={(e) =>
+              handleChange(e.target.name, e.target.value)
+            }
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition"
+          >
+            <option value="">Select Category</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Ideas">Ideas</option>
+            <option value="Tasks">Tasks</option>
+          </select>
+        </div>
 
-export default Form
+        <button
+          type="submit"
+          className="w-full py-3 px-4 bg-indigo-500 text-white font-medium rounded-lg hover:bg-indigo-600 active:scale-[0.98] transition"
+        >
+          Save
+        </button>
+      </form>
+    </>
+  );
+};
+
+export default Form;
+
