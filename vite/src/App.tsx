@@ -1,11 +1,11 @@
-import Form from "./components/Form"
 import Display from "./components/Display"
+import Sidebar from "./components/Sidebar"
 function App() {
  
 
   return (
     <>
-    <Form/>
+    <Sidebar/>
     <Display/>
     </>
   )
