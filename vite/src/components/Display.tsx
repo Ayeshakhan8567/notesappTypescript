@@ -1,10 +1,11 @@
 import useStore from "../store/store";
-
+import Cardoptions from "./Cardoptions";
 const Display = () => {
   const list = useStore((state) => state.list);
-
+  const deleteNote = useStore((state) => state.deleteNote);
   return (
-    <main className="min-h-screen flex-1 bg-blue-200  overflow-hidden">
+    
+    <main className=" ml-64 min-h-screen flex-1 bg-blue-200  overflow-hidden ">
       
         <header className=" flex items-center pl-4 border-b-2 border-blue-300 h-15 w-full fixed bg-blue-400">
           <h2 className="text-xl font-bold">All Notes</h2>
@@ -36,7 +37,10 @@ const Display = () => {
                 <div className="text-gray-400 text-sm">
                   {note.content?.length || 0} chars
                 </div>
+                  <Cardoptions note={note} />
               </div>
+             
+
             </div>
           ))}
         </div>

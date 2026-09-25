@@ -24,6 +24,7 @@ type Store = {
   handleSubmit: () => void;
   handleForm:()=>void;
   handleCancel:()=>void;
+  deleteNote:(notes:Notes)=>void;
 };
 
 const useStore = create<Store>((set, get) => ({
@@ -93,7 +94,15 @@ handleCancel:()=>{
   set({
     showForm:false
   })
-}
+},
+
+  deleteNote: (notes) => {
+    set((state) => ({
+      list: state.list.filter(
+        (item) => item.id !== notes.id
+      ),
+    }));
+  },
 
 
 }));

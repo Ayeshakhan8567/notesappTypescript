@@ -4,7 +4,7 @@ const Sidebar = () => {
    const handleForm=useStore((state)=>(state.handleForm))
 
   return (
-    <aside className="w-64 min-h-screen bg-slate-50 border-r border-slate-200 px-5 py-6 fixed">
+    <aside className=" fixed w-64 min-h-screen bg-slate-50 border-r border-slate-200 px-5 py-6">
       <div className="flex flex-col gap-8">
 
         {/* Logo */}
