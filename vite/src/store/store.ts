@@ -18,10 +18,12 @@ type Store = {
   Inputs: Notes;
   list: Notes[];
   editId: string | null;
-
+  showForm:boolean;
   handleChange: (name: string, value: string) => void;
   handleEdit: (notes: Notes) => void;
   handleSubmit: () => void;
+  handleForm:()=>void;
+  handleCancel:()=>void;
 };
 
 const useStore = create<Store>((set, get) => ({
@@ -31,6 +33,7 @@ const useStore = create<Store>((set, get) => ({
 
   editId: null,
 
+  showForm:false,
 
   handleEdit: (notes) => {
     set({
@@ -78,9 +81,21 @@ const useStore = create<Store>((set, get) => ({
 
         editId: null,
         Inputs: emptyInputs,
-      }));
+      })); 
     }
   },
+ handleForm:()=>{
+  set({
+    showForm:true
+  })
+ },
+handleCancel:()=>{
+  set({
+    showForm:false
+  })
+}
+
+
 }));
 
 export default useStore;

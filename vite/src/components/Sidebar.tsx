@@ -1,7 +1,10 @@
+import useStore from "../store/store";
 
 const Sidebar = () => {
+   const handleForm=useStore((state)=>(state.handleForm))
+
   return (
-    <aside className="w-64 min-h-screen bg-slate-50 border-r border-slate-200 px-5 py-6">
+    <aside className="w-64 min-h-screen bg-slate-50 border-r border-slate-200 px-5 py-6 fixed">
       <div className="flex flex-col gap-8">
 
         {/* Logo */}
@@ -62,9 +65,9 @@ const Sidebar = () => {
       </div>
 
      <div>
-    <button className="w-full h-12 rounded-xl bg-indigo-600 text-white text-lg" >New Note</button>
+    <button onClick={handleForm} className="w-full h-12 rounded-xl bg-indigo-600 text-white text-lg" >New Note</button>
     </div>
-    
+
     </aside>
   )
 }
