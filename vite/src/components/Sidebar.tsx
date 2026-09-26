@@ -1,76 +1,92 @@
 import useStore from "../store/store";
 
 const Sidebar = () => {
-   const handleForm=useStore((state)=>(state.handleForm))
+  const list = useStore((state) => state.list);
+  const handleForm = useStore((state) => state.handleForm);
+
+  
+  const totalNotes = list.length;
+  const pinnedCount = list.filter((note) => note.isPinned).length;
+
+
+  const workCount = list.filter((note) => note.category === "Work").length;
+  const personalCount = list.filter((note) => note.category === "Personal").length;
+  const ideasCount = list.filter((note) => note.category === "Ideas").length;
+  const tasksCount = list.filter((note) => note.category === "Tasks").length;
 
   return (
-    <aside className=" fixed w-64 min-h-screen bg-slate-50 border-r border-slate-200 px-5 py-6">
-      <div className="flex flex-col gap-8">
+    <aside className="w-64 bg-white h-screen border-r border-gray-200 fixed left-0 top-0 p-5 flex flex-col justify-between z-20">
+      <div>
+        {/* App Title */}
+        <div className="flex items-center gap-2 mb-8">
+          <h1 className="text-xl font-bold text-gray-800">Notes App</h1>
+        </div>
 
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center">
-            <span className="text-white font-bold text-lg">N</span>
+        {/* Create Note Button */}
+        <button
+          onClick={handleForm}
+          className="w-full bg-indigo-600 text-white font-medium py-2.5 px-4 rounded-xl hover:bg-indigo-700 transition duration-200 mb-6 shadow-sm"
+        >
+          + Add New Note
+        </button>
+
+        {/* Navigation / Filter List */}
+        <nav className="space-y-1">
+          {/* All Notes */}
+          <div className="flex items-center justify-between p-2.5 rounded-lg bg-gray-100 text-gray-800 font-medium mb-3">
+            <span>All Notes</span>
+            <span className="bg-gray-200 text-gray-700 px-2 py-0.5 text-xs rounded-full font-semibold">
+              {totalNotes}
+            </span>
           </div>
 
-          <p className="text-xl font-bold text-slate-800">
-            Notora
-          </p>
-        </div>
+          {/* Pinned Notes */}
+          <div className="flex items-center justify-between p-2.5 rounded-lg text-gray-600 hover:bg-gray-50 transition cursor-pointer mb-4">
+            <span>Pinned</span>
+            <span className="bg-amber-100 text-amber-700 px-2 py-0.5 text-xs rounded-full font-semibold">
+              {pinnedCount}
+            </span>
+          </div>
 
-        {/* Search */}
-        <div>
-          <input
-            type="text"
-            placeholder="Search notes..."
-            className="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 outline-none text-sm text-slate-700 placeholder:text-slate-400 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
-          />
-        </div>
-
-        {/* Categories */}
-        <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400">
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2 pt-2 mb-2">
             Categories
           </p>
 
-          <div className="flex flex-col gap-1">
-
-            <div className="px-3 py-2.5 rounded-lg bg-indigo-50 text-indigo-600 font-medium text-sm cursor-pointer">
-              All Notes
-            </div>
-
-            <div className="px-3 py-2.5 rounded-lg text-slate-600 text-sm cursor-pointer hover:bg-slate-100 hover:text-slate-900">
-              Pinned
-            </div>
-
-            <div className="px-3 py-2.5 rounded-lg text-slate-600 text-sm cursor-pointer hover:bg-slate-100 hover:text-slate-900">
-              Work
-            </div>
-
-            <div className="px-3 py-2.5 rounded-lg text-slate-600 text-sm cursor-pointer hover:bg-slate-100 hover:text-slate-900">
-              Personal
-            </div>
-
-            <div className="px-3 py-2.5 rounded-lg text-slate-600 text-sm cursor-pointer hover:bg-slate-100 hover:text-slate-900">
-              Ideas
-            </div>
-
-            <div className="px-3 py-2.5 rounded-lg text-slate-600 text-sm cursor-pointer hover:bg-slate-100 hover:text-slate-900">
-              Tasks
-            </div>
-
+          {/* Work Category */}
+          <div className="flex items-center justify-between p-2.5 rounded-lg text-gray-600 hover:bg-gray-50 transition cursor-pointer">
+            <span>Work</span>
+            <span className="bg-purple-100 text-purple-700 px-2 py-0.5 text-xs rounded-full font-semibold">
+              {workCount}
+            </span>
           </div>
-        </div>
 
+          {/* Personal Category */}
+          <div className="flex items-center justify-between p-2.5 rounded-lg text-gray-600 hover:bg-gray-50 transition cursor-pointer">
+            <span>Personal</span>
+            <span className="bg-emerald-100 text-emerald-700 px-2 py-0.5 text-xs rounded-full font-semibold">
+              {personalCount}
+            </span>
+          </div>
+
+          {/* Ideas Category */}
+          <div className="flex items-center justify-between p-2.5 rounded-lg text-gray-600 hover:bg-gray-50 transition cursor-pointer">
+            <span>Ideas</span>
+            <span className="bg-blue-100 text-blue-700 px-2 py-0.5 text-xs rounded-full font-semibold">
+              {ideasCount}
+            </span>
+          </div>
+
+          {/* Tasks Category */}
+          <div className="flex items-center justify-between p-2.5 rounded-lg text-gray-600 hover:bg-gray-50 transition cursor-pointer">
+            <span>Tasks</span>
+            <span className="bg-rose-100 text-rose-700 px-2 py-0.5 text-xs rounded-full font-semibold">
+              {tasksCount}
+            </span>
+          </div>
+        </nav>
       </div>
-
-     <div>
-    <button onClick={handleForm} className="w-full h-12 rounded-xl bg-indigo-600 text-white text-lg" >New Note</button>
-    </div>
-
     </aside>
-  )
-}
+  );
+};
 
 export default Sidebar;
-

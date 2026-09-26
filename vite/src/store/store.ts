@@ -5,6 +5,8 @@ export type Notes = {
   content: string;
   category: string;
   id: string;
+  isPinned?: boolean;
+  
 };
 
 const emptyInputs: Notes = {
@@ -27,6 +29,7 @@ type Store = {
   handleEditForm: () => void;
   handleCancel: () => void;
   deleteNote: (notes: Notes) => void;
+  pinNote:(notes:Notes)=>void;
 };
 
 const useStore = create<Store>((set, get) => ({
@@ -35,6 +38,7 @@ const useStore = create<Store>((set, get) => ({
   editId: null,
   showForm: false,
   editForm: false,
+  isPinned:false,
 
   handleEdit: (notes) => {
     set({
@@ -67,6 +71,7 @@ const useStore = create<Store>((set, get) => ({
       const newNote = {
         ...Inputs,
         id: crypto.randomUUID(),
+        isPinned: false,
       };
 
       set((state) => ({
@@ -127,6 +132,15 @@ const useStore = create<Store>((set, get) => ({
       list: state.list.filter((item) => item.id !== notes.id),
     }));
   },
+
+pinNote: (notes) => {
+    set((state) => ({
+      list: state.list.map((item) =>
+        item.id === notes.id ? { ...item, isPinned: !item.isPinned } : item
+      ),
+    }));
+  },
+
 }));
 
 export default useStore;
