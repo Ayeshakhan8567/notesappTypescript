@@ -18,23 +18,23 @@ type Store = {
   Inputs: Notes;
   list: Notes[];
   editId: string | null;
-  showForm:boolean;
+  showForm: boolean;
+  editForm: boolean;
   handleChange: (name: string, value: string) => void;
   handleEdit: (notes: Notes) => void;
   handleSubmit: () => void;
-  handleForm:()=>void;
-  handleCancel:()=>void;
-  deleteNote:(notes:Notes)=>void;
+  handleForm: () => void;
+  handleEditForm: () => void;
+  handleCancel: () => void;
+  deleteNote: (notes: Notes) => void;
 };
 
 const useStore = create<Store>((set, get) => ({
   Inputs: emptyInputs,
-
   list: [],
-
   editId: null,
-
-  showForm:false,
+  showForm: false,
+  editForm: false,
 
   handleEdit: (notes) => {
     set({
@@ -58,8 +58,12 @@ const useStore = create<Store>((set, get) => ({
 
   handleSubmit: () => {
     const { Inputs, editId } = get();
-    
+
+  
+    if (!Inputs.title.trim()) return;
+
     if (!editId) {
+      
       const newNote = {
         ...Inputs,
         id: crypto.randomUUID(),
@@ -68,8 +72,11 @@ const useStore = create<Store>((set, get) => ({
       set((state) => ({
         list: [...state.list, newNote],
         Inputs: emptyInputs,
+        showForm: false, 
+        editForm: false,
       }));
     } else {
+      // Edit Note Logic
       set((state) => ({
         list: state.list.map((notes) =>
           notes.id === editId
@@ -79,32 +86,47 @@ const useStore = create<Store>((set, get) => ({
               }
             : notes
         ),
-
+        showForm: false, 
+        editForm: false, 
         editId: null,
         Inputs: emptyInputs,
-      })); 
+      }));
     }
   },
- handleForm:()=>{
-  set({
-    showForm:true
-  })
- },
-handleCancel:()=>{
-  set({
-    showForm:false
-  })
-},
+
+  
+  handleForm: () => {
+    set({
+      showForm: true,
+      editForm: false,
+      editId: null,
+      Inputs: emptyInputs, 
+    });
+  },
+
+
+  handleEditForm: () => {
+    set({
+      editForm: true,
+      showForm: true,
+    });
+  },
+
+  
+  handleCancel: () => {
+    set({
+      showForm: false,
+      editForm: false,
+      editId: null,
+      Inputs: emptyInputs,
+    });
+  },
 
   deleteNote: (notes) => {
     set((state) => ({
-      list: state.list.filter(
-        (item) => item.id !== notes.id
-      ),
+      list: state.list.filter((item) => item.id !== notes.id),
     }));
   },
-
-
 }));
 
 export default useStore;

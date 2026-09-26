@@ -2,7 +2,7 @@ import useStore from "../store/store";
 import Cardoptions from "./Cardoptions";
 const Display = () => {
   const list = useStore((state) => state.list);
-  const deleteNote = useStore((state) => state.deleteNote);
+
   return (
     
     <main className=" ml-64 min-h-screen flex-1 bg-blue-200  overflow-hidden ">
@@ -12,7 +12,7 @@ const Display = () => {
         </header>
          
        
-        <div className=" pt-20 px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className=" pt-20 px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
           {list.map((note) => (
             <div
               key={note.id}
