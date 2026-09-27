@@ -6,7 +6,7 @@ export type Notes = {
   category: string;
   id: string;
   isPinned?: boolean;
-  
+  createdAt?: number;
 };
 
 const emptyInputs: Notes = {
@@ -14,6 +14,8 @@ const emptyInputs: Notes = {
   content: "",
   category: "",
   id: "",
+
+
 };
 
 type Store = {
@@ -72,6 +74,7 @@ const useStore = create<Store>((set, get) => ({
         ...Inputs,
         id: crypto.randomUUID(),
         isPinned: false,
+        createdAt: Date.now()
       };
 
       set((state) => ({

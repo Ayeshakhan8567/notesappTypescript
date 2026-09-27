@@ -1,6 +1,7 @@
 import useStore from "../store/store";
 import Cardoptions from "./Cardoptions";
 import type { Notes } from "../store/store";
+import { formatDistanceToNow } from "date-fns";
 
 const Display = () => {
   const list = useStore((state) => state.list);
@@ -21,17 +22,25 @@ const Display = () => {
       }}
     >
       <div>
+         <span className="text-xs text-gray-400 block mb-3">
+        {note.createdAt
+          ? formatDistanceToNow(note.createdAt, { addSuffix: true })
+          : "Just now"}
+      </span>
         <h2 className="text-xl font-semibold mb-3 break-words line-clamp-1">
           {note.title}
         </h2>
         <p className="text-gray-600 line-clamp-3">{note.content}</p>
       </div>
 
+     
+
       <div className="flex justify-between items-center mt-4">
         <span className="text-xs bg-blue-100 text-blue-600 px-2.5 py-1 rounded-full font-medium">
           {note.category}
         </span>
         <span className="text-sm text-stone-400" >{note.content.length} char</span>
+        
         <Cardoptions note={note} />
       </div>
     </div>
