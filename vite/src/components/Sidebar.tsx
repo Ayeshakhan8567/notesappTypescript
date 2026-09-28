@@ -17,20 +17,31 @@ const Sidebar = () => {
   return (
     <aside className="w-64 bg-white h-screen border-r border-gray-200 fixed left-0 top-0 p-5 flex flex-col justify-between z-20">
       <div>
+        
         {/* App Title */}
         <div className="flex items-center gap-2 mb-8">
           <h1 className="text-xl font-bold text-gray-800">Notes App</h1>
         </div>
-
+          
+          
         {/* Create Note Button */}
+    
         <button
           onClick={handleForm}
           className="w-full bg-indigo-600 text-white font-medium py-2.5 px-4 rounded-xl hover:bg-indigo-700 transition duration-200 mb-6 shadow-sm"
         >
           + Add New Note
         </button>
+          <div className="flex flex-col gap-6" >
+
+            {/* Search Button */}
+        <div>
+        <input type=" text" placeholder="search" className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition" />
+        </div>
+        
 
         {/* Navigation / Filter List */}
+        
         <nav className="space-y-1">
           {/* All Notes */}
           <div className="flex items-center justify-between p-2.5 rounded-lg bg-gray-100 text-gray-800 font-medium mb-3">
@@ -84,6 +95,7 @@ const Sidebar = () => {
             </span>
           </div>
         </nav>
+        </div>
       </div>
     </aside>
   );

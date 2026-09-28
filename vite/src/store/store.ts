@@ -15,7 +15,6 @@ const emptyInputs: Notes = {
   category: "",
   id: "",
 
-
 };
 
 type Store = {
@@ -40,7 +39,7 @@ const useStore = create<Store>((set, get) => ({
   editId: null,
   showForm: false,
   editForm: false,
-  isPinned:false,
+
 
   handleEdit: (notes) => {
     set({
