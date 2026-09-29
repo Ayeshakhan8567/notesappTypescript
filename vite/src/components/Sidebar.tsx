@@ -14,6 +14,7 @@ const Sidebar = () => {
   const ideasCount = list.filter((note) => note.category === "Ideas").length;
   const tasksCount = list.filter((note) => note.category === "Tasks").length;
 
+{/*search states*/}
   const searchQuery = useStore((state) => state.searchQuery);
   const setSearchQuery = useStore((state) => state.setSearchQuery);
 
