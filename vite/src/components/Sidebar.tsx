@@ -3,7 +3,7 @@ import useStore from "../store/store";
 const Sidebar = () => {
   const list = useStore((state) => state.list);
   const handleForm = useStore((state) => state.handleForm);
-
+  
   
   const totalNotes = list.length;
   const pinnedCount = list.filter((note) => note.isPinned).length;
@@ -13,6 +13,9 @@ const Sidebar = () => {
   const personalCount = list.filter((note) => note.category === "Personal").length;
   const ideasCount = list.filter((note) => note.category === "Ideas").length;
   const tasksCount = list.filter((note) => note.category === "Tasks").length;
+
+  const searchQuery = useStore((state) => state.searchQuery);
+  const setSearchQuery = useStore((state) => state.setSearchQuery);
 
   return (
     <aside className="w-64 bg-white h-screen border-r border-gray-200 fixed left-0 top-0 p-5 flex flex-col justify-between z-20">
@@ -36,7 +39,11 @@ const Sidebar = () => {
 
             {/* Search Button */}
         <div>
-        <input type=" text" placeholder="search" className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition" />
+        <input 
+        type=" text" 
+        placeholder="search"
+        value={searchQuery?? ""} onChange={(e)=>setSearchQuery(e.target.value)}
+        className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition" />
         </div>
         
 

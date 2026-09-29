@@ -7,10 +7,19 @@ const Display = () => {
   const list = useStore((state) => state.list);
   const handleEdit = useStore((state) => state.handleEdit);
   const handleEditForm = useStore((state) => state.handleEditForm);
+  const searchQuery=useStore((state)=>state.searchQuery);
+
+  const filteredList = list.filter((note) => {
+    const query = searchQuery.toLowerCase().trim();
+    return (
+      note.title.toLowerCase().includes(query) ||
+      note.content.toLowerCase().includes(query)
+    );
+  });
 
 
-  const pinnedNotes = list.filter((note) => note.isPinned);
-  const otherNotes = list.filter((note) => !note.isPinned);
+  const pinnedNotes =filteredList.filter((note) => note.isPinned);
+  const otherNotes = filteredList.filter((note) => !note.isPinned);
 
   const renderCard = (note: Notes) => (
     <div
@@ -51,6 +60,23 @@ const Display = () => {
       <header className="flex items-center pl-4 border-b-2 border-blue-300 h-15 w-full fixed bg-blue-400 z-10">
         <h2 className="text-xl font-bold">All Notes</h2>
       </header>
+        
+
+     {list.length === 0 && (
+     <div className="text-center py-10 text-gray-600">
+      No notes yet. Click "+ Add New Note" to create one!
+     </div>
+)}
+
+
+{list.length > 0 && filteredList.length === 0 && (
+  <div className="text-center py-10 text-gray-600">
+    No notes found matching "{searchQuery}"
+  </div>
+)}
+
+
+
 
       <div className="pt-20 px-6 space-y-8">
 

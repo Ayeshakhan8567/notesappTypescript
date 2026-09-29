@@ -23,6 +23,7 @@ type Store = {
   editId: string | null;
   showForm: boolean;
   editForm: boolean;
+  searchQuery: string;
   handleChange: (name: string, value: string) => void;
   handleEdit: (notes: Notes) => void;
   handleSubmit: () => void;
@@ -31,6 +32,7 @@ type Store = {
   handleCancel: () => void;
   deleteNote: (notes: Notes) => void;
   pinNote:(notes:Notes)=>void;
+  setSearchQuery: (query: string) => void;
 };
 
 const useStore = create<Store>((set, get) => ({
@@ -39,6 +41,9 @@ const useStore = create<Store>((set, get) => ({
   editId: null,
   showForm: false,
   editForm: false,
+  searchQuery:"",
+
+  setSearchQuery: (query) => set({ searchQuery: query }),
 
 
   handleEdit: (notes) => {

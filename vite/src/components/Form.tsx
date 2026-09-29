@@ -6,7 +6,7 @@ const Form = () => {
   const handleSubmit = useStore((state) => state.handleSubmit);
   const showForm = useStore((state) => state.showForm);
   const handleCancel = useStore((state) => state.handleCancel);
-  const editForm = useStore((state) => state.editForm); // Boolean (true jab Edit kar rahe ho)
+  const editForm = useStore((state) => state.editForm);
 
   if (!showForm) return null;
 
@@ -16,6 +16,8 @@ const Form = () => {
         <h2 className="text-2xl font-semibold mb-5">
           {editForm ? "Edit Note" : "New Note"}
         </h2>
+
+  
 
         <form
           onSubmit={(e) => {
