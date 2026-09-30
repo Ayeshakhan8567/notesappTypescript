@@ -7,8 +7,8 @@ const Sidebar = () => {
   
   const totalNotes = list.length;
   const pinnedCount = list.filter((note) => note.isPinned).length;
-
-
+ 
+{/*categories count*/}
   const workCount = list.filter((note) => note.category === "Work").length;
   const personalCount = list.filter((note) => note.category === "Personal").length;
   const ideasCount = list.filter((note) => note.category === "Ideas").length;
