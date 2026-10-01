@@ -1,18 +1,19 @@
 import useStore from "../store/store";
+import type { Notes } from "../store/store";
 
 const Sidebar = () => {
   const list = useStore((state) => state.list);
   const handleForm = useStore((state) => state.handleForm);
   
   
-  const totalNotes = list.length;
-  const pinnedCount = list.filter((note) => note.isPinned).length;
+  const totalNotes:number = list.length;
+  const pinnedCount:number = list.filter((note:Notes) => note.isPinned).length;
  
 {/*categories count*/}
-  const workCount = list.filter((note) => note.category === "Work").length;
-  const personalCount = list.filter((note) => note.category === "Personal").length;
-  const ideasCount = list.filter((note) => note.category === "Ideas").length;
-  const tasksCount = list.filter((note) => note.category === "Tasks").length;
+  const workCount:number = list.filter((note:Notes) => note.category === "Work").length;
+  const personalCount:number = list.filter((note:Notes) => note.category === "Personal").length;
+  const ideasCount:number = list.filter((note:Notes) => note.category === "Ideas").length;
+  const tasksCount:number = list.filter((note:Notes) => note.category === "Tasks").length;
 
 {/*search states*/}
   const searchQuery = useStore((state) => state.searchQuery);
@@ -41,9 +42,9 @@ const Sidebar = () => {
             {/* Search Button */}
         <div>
         <input 
-        type=" text" 
+        type="text" 
         placeholder="search"
-        value={searchQuery?? ""} onChange={(e)=>setSearchQuery(e.target.value)}
+        value={searchQuery ?? ""} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setSearchQuery(e.target.value)}
         className="w-full px-4 py-3 border border-gray-300 rounded-lg outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition" />
         </div>
         

@@ -3,7 +3,7 @@ import Cardoptions from "./Cardoptions";
 import type { Notes } from "../store/store";
 import { formatDistanceToNow } from "date-fns";
 
-const Display = () => {
+const Display:React.FC = () => {
   const list = useStore((state) => state.list);
   const handleEdit = useStore((state) => state.handleEdit);
   const handleEditForm = useStore((state) => state.handleEditForm);
