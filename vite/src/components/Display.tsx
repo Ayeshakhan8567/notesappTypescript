@@ -17,7 +17,7 @@ const Display:React.FC = () => {
     );
   });
 
-
+{/*notes*/}
   const pinnedNotes =filteredList.filter((note) => note.isPinned);
   const otherNotes = filteredList.filter((note) => !note.isPinned);
 
