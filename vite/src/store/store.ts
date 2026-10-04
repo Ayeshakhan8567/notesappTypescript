@@ -34,7 +34,7 @@ type Store = {
   pinNote:(notes:Notes)=>void;
   setSearchQuery: (query: string) => void;
 };
-
+{/*store implementation*/}
 const useStore = create<Store>((set, get) => ({
   Inputs: emptyInputs,
   list: [],

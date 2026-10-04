@@ -33,7 +33,6 @@ const Form = () => {
     if (!Inputs?.category) {
       newErrors.category = "Please select a category";
     }
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -67,7 +66,7 @@ const Form = () => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div className=" mt-3 fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-white w-full max-w-lg rounded-2xl p-6 shadow-2xl transition-all">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">
           {editForm ? "Edit Note" : "New Note"}
