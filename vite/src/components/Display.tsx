@@ -6,7 +6,7 @@ import type { MouseEvent } from "react";
 
 
 const Display = () => {
-
+  // 1. Zustand Store Selectors with explicit Types
   const list = useStore((state) => state.list);
   const handleEdit = useStore((state) => state.handleEdit);
   const handleEditForm = useStore((state) => state.handleEditForm);

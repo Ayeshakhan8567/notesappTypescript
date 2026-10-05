@@ -46,6 +46,7 @@ const useStore = create<Store>((set, get) => ({
   setSearchQuery: (query) => set({ searchQuery: query }),
 
 
+
   handleEdit: (notes) => {
     set({
       Inputs: {
